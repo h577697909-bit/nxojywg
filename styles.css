@@ -1516,3 +1516,31 @@ td { min-height: 61px; padding: 15px 14px; font-size: 14px; }
 .mono { font-size: 12.5px; }
 .subtext { font-size: 11px; }
 .status { min-height: 24px; padding-inline: 8px; font-size: 11.5px; }
+
+/* Risk center readability: scoped so other modules keep their current density */
+.risk-nav .nav-subparent { font-size: 13.5px; }
+.risk-nav .nav-grandchildren .nav-item { font-size: 13.5px; }
+
+#app.risk-section .page-title h1 { font-size: 31px; }
+#app.risk-section .page-title p { font-size: 16px; }
+#app.risk-section .field label { font-size: 13px; }
+#app.risk-section .search-control,
+#app.risk-section .select-control,
+#app.risk-section .date-control { height: 43px; font-size: 14.5px; }
+#app.risk-section .button { height: 43px; font-size: 14.5px; }
+#app.risk-section .button.small { height: 35px; font-size: 13px; }
+#app.risk-section .source-page-actions { min-height: 62px; }
+#app.risk-section .source-card-title { min-height: 58px; font-size: 18px; }
+#app.risk-section .source-filter-grid { gap: 26px; padding: 31px 26px; }
+#app.risk-section .finance-settlement-filter { gap: 20px; padding: 31px 26px; }
+#app.risk-section .table-toolbar { min-height: 64px; }
+#app.risk-section .table-toolbar strong { font-size: 18px; }
+#app.risk-section .table-toolbar small { font-size: 12.5px; }
+#app.risk-section th,
+#app.risk-section .source-table th { height: 51px; font-size: 13.5px; }
+#app.risk-section td,
+#app.risk-section .source-table td { min-height: 64px; height: 64px; font-size: 14.5px; }
+#app.risk-section .source-table td strong { font-size: 14.5px; }
+#app.risk-section .mono { font-size: 13px; }
+#app.risk-section .status { min-height: 25px; font-size: 12px; }
+#app.risk-section .pagination { font-size: 12.5px; }
