@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NexusOrch 一触即连 PC 后台静态改版参考">
+  <title>NexusOrch·一触即连</title>
+  <link rel="icon" href="assets/nexusorch-logo.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="login-screen" id="login-screen">
+    <section class="login-card" aria-labelledby="login-title">
+      <div class="login-brand">
+        <img src="assets/nexusorch-logo.png" alt="NexusOrch">
+        <span>一触即连</span>
+      </div>
+      <header class="login-heading">
+        <h1 id="login-title">登录您的账户</h1>
+      </header>
+      <form id="login-form" novalidate>
+        <div class="login-field">
+          <label for="login-account">账号</label>
+          <input id="login-account" name="account" autocomplete="username" placeholder="请输入账号">
+        </div>
+        <div class="login-field">
+          <div class="login-label-row"><label for="login-password">密码</label><button type="button" class="login-text-button">忘记密码</button></div>
+          <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="请输入密码">
+        </div>
+        <div class="login-field">
+          <label for="login-captcha">验证码</label>
+          <div class="captcha-control"><input id="login-captcha" name="captcha" placeholder="请输入验证码"><span class="captcha-image" aria-label="验证码展示">QY A4</span></div>
+        </div>
+        <p class="login-error" id="login-error" role="alert" hidden>账号或密码错误</p>
+        <button class="login-submit" type="submit">登录</button>
+      </form>
+    </section>
+  </main>
+
+  <div class="app-shell" hidden>
+    <aside class="sidebar" aria-label="主导航">
+      <a class="brand" href="#dashboard" aria-label="NexusOrch 首页">
+        <img src="assets/nexusorch-logo.png" alt="NexusOrch">
+      </a>
+
+      <nav class="side-nav">
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13a8 8 0 1 1 16 0"/><path d="M12 13l4-4"/><path d="M5 17h14"/></svg></span><span>概览面板</span></button>
+
+        <div class="nav-group">
+          <button class="nav-parent" type="button"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg></span><span>交易中心</span><span class="chevron">⌄</span></button>
+          <div class="nav-children">
+            <button class="nav-item" data-page="transactions">交易查询</button>
+            <button class="nav-item" data-page="disputes">争议查询</button>
+            <button class="nav-item" data-action="unavailable-settlement">结算管理</button>
+          </div>
+        </div>
+
+        <div class="nav-group">
+          <button class="nav-parent" type="button"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h11"/><path d="M15 4l3 3-3 3"/><path d="M20 17H9"/><path d="M9 14l-3 3 3 3"/></svg></span><span>路由管理</span><span class="nav-lock">未开通</span></button>
+        </div>
+
+        <div class="nav-group">
+          <button class="nav-parent" type="button"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-2.7 7.8-7 10-4.3-2.2-7-5.4-7-10V6l7-3z"/><path d="M9 12l2 2 4-5"/></svg></span><span>风控中心</span><span class="chevron">⌄</span></button>
+          <div class="nav-children risk-nav">
+            <div class="nav-subgroup open">
+              <button class="nav-subparent" type="button"><span class="subnav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M8 6h8M9 18h6"/><circle cx="5" cy="12" r="1"/><circle cx="8" cy="6" r="1"/><circle cx="9" cy="18" r="1"/></svg></span><span>预警来源</span><span class="chevron">⌄</span></button>
+              <div class="nav-grandchildren">
+                <button class="nav-item" data-page="sources-ethoca">Ethoca</button>
+                <button class="nav-item" data-page="sources-rdr">RDR</button>
+                <button class="nav-item" data-page="sources-cdrn">CDRN</button>
+                <button class="nav-item" data-page="sources-order-insight">Order Insight</button>
+              </div>
+            </div>
+            <button class="nav-subparent nav-link-parent" type="button" data-page="alerts"><span class="subnav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span><span>预警处理</span><span class="chevron">›</span></button>
+            <div class="nav-subgroup">
+              <button class="nav-subparent" type="button"><span class="subnav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="1"/><path d="M8 3v6M16 3v6M4 10h16"/></svg></span><span>财务结算</span><span class="chevron">⌄</span></button>
+              <div class="nav-grandchildren">
+                <button class="nav-item" data-page="finance">结算管理</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-group">
+          <button class="nav-parent" type="button"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1z"/></svg></span><span>设置</span><span class="chevron">⌄</span></button>
+          <div class="nav-children">
+            <button class="nav-item" data-page="settings">用户与子账号</button>
+          </div>
+        </div>
+
+        <div class="nav-group">
+          <button class="nav-parent" type="button"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v5h5"/><path d="M9 12h6M9 16h6"/></svg></span><span>API 文档</span><span class="chevron">⌄</span></button>
+          <div class="nav-children api-nav">
+            <div class="nav-subgroup open">
+              <button class="nav-subparent" type="button"><span class="subnav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h12v14H6z"/><path d="M9 3v4M15 3v4M9 11h6M9 15h4"/></svg></span><span>风控对接</span><span class="chevron">⌄</span></button>
+              <div class="nav-grandchildren">
+                <button class="nav-item" data-page="docs">风控预警API文档</button>
+                <button class="nav-item" data-page="docs-order-insight">Order Insight API文档</button>
+              </div>
+            </div>
+            <button class="nav-subparent nav-link-parent" type="button" data-page="docs-transactions"><span class="subnav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h12v14H6z"/><path d="M9 3v4M15 3v4M9 11h6M9 15h4"/></svg></span><span>交易对接</span><span class="chevron">›</span></button>
+          </div>
+        </div>
+      </nav>
+    </aside>
+    <button class="mobile-sidebar-backdrop" id="mobile-sidebar-backdrop" type="button" aria-label="关闭导航" hidden></button>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="mobile-topbar-start">
+          <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" type="button" aria-label="打开导航" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+          <span class="mobile-brand-name">NexusOrch</span>
+        </div>
+        <div class="console-path" aria-hidden="true"></div>
+        <div class="top-actions">
+          <button class="icon-button notification-button" type="button" aria-label="通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 7h18s-3 0-3-7"/><path d="M10 19h4"/></svg><b>876</b></button>
+          <span class="account-email">385896205@qq.com</span>
+          <div class="settings-menu-wrap">
+            <button class="icon-button settings-button" id="settings-menu-toggle" type="button" aria-label="设置" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1z"/></svg></button>
+            <div class="settings-menu" id="settings-menu" role="menu" hidden>
+              <button type="button" data-settings-modal="password"><span class="menu-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-2.7 7.8-7 10-4.3-2.2-7-5.4-7-10V6l7-3z"/><path d="M9.5 12h5M12 9.5v5"/></svg></span><span>修改密码</span></button>
+              <button type="button" data-settings-modal="email"><span class="menu-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="9" width="14" height="11" rx="2"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg></span><span>更换邮箱</span></button>
+              <button type="button" data-settings-modal="timezone"><span class="menu-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2M7 4l2 2"/></svg></span><span>更换时区</span></button>
+              <button type="button" data-settings-modal="api"><span class="menu-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="11" rx="1"/><path d="M9 20h6M12 15v5"/></svg></span><span>接口配置</span></button>
+              <button type="button" data-settings-modal="2fa"><span class="menu-icon menu-2fa">2FA</span><span>二次验证</span></button>
+              <div class="settings-menu-divider"></div>
+              <button type="button" data-settings-action="logout"><span class="menu-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H5v14h5M14 8l4 4-4 4M8 12h10"/></svg></span><span>退出</span></button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main id="app" class="main-content" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+  <aside class="detail-drawer" id="detail-drawer" aria-hidden="true" aria-label="详情抽屉">
+    <div class="drawer-head">
+      <div><span class="eyebrow">详情</span><h2 id="drawer-title">交易详情</h2></div>
+      <button class="icon-button" id="drawer-close" aria-label="关闭详情">×</button>
+    </div>
+    <div id="drawer-content" class="drawer-content"></div>
+  </aside>
+
+  <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+  <section class="confirm-modal" id="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="danger-icon">!</div>
+    <h2 id="modal-title">确认操作</h2>
+    <p id="modal-copy">这是静态演示，不会产生真实操作。</p>
+    <div class="modal-actions">
+      <button class="button ghost" id="modal-cancel">取消</button>
+      <button class="button danger" id="modal-confirm">仅演示确认</button>
+    </div>
+  </section>
+
+  <div class="refund-backdrop" id="refund-backdrop" hidden></div>
+  <section class="refund-modal" id="refund-modal" role="dialog" aria-modal="true" aria-labelledby="refund-title" aria-hidden="true">
+    <header class="refund-head">
+      <h2 id="refund-title">退款给客户</h2>
+      <button class="icon-button" id="refund-close" type="button" aria-label="关闭退款窗口">×</button>
+    </header>
+    <div class="refund-body">
+      <p class="refund-intro">退款处理需 2-5 天后在付款人账单中更新。</p>
+      <div class="refund-field">
+        <label for="refund-amount">退款金额</label>
+        <div class="refund-amount-control"><input id="refund-amount" inputmode="decimal" placeholder="0.00"><span id="refund-currency">USD</span></div>
+        <p>您可以发起 <strong id="refund-limit">0.00 USD</strong> 的全额退款。<button type="button" id="refund-full">全额退款</button></p>
+      </div>
+      <div class="refund-field">
+        <label for="refund-reason">退款理由</label>
+        <select id="refund-reason"><option value="">请选择退款理由</option><option>客户请求</option><option>重复付款</option><option>商品未收到</option><option>其他</option></select>
+        <p>该信息仅对您可见，不会向客户展示。</p>
+        <span class="required-copy">必填</span>
+      </div>
+      <div class="refund-field">
+        <label for="refund-note">附言 <em>可选</em></label>
+        <textarea id="refund-note" rows="4" placeholder="补充说明"></textarea>
+        <p>该信息仅对您可见，不会向客户展示。</p>
+      </div>
+    </div>
+    <footer class="refund-actions">
+      <button class="button text" id="refund-cancel" type="button">取消</button>
+      <button class="button primary" id="refund-confirm" type="button" disabled>确认退款</button>
+    </footer>
+  </section>
+
+  <div class="standard-modal-backdrop" id="standard-modal-backdrop" hidden></div>
+  <section class="standard-modal" id="standard-modal" role="dialog" aria-modal="true" aria-labelledby="standard-modal-title" aria-hidden="true">
+    <header class="standard-modal-head">
+      <h2 id="standard-modal-title">设置</h2>
+      <button class="standard-modal-close" id="standard-modal-close" type="button" aria-label="关闭窗口">×</button>
+    </header>
+    <div class="standard-modal-body" id="standard-modal-body"></div>
+    <footer class="standard-modal-actions" id="standard-modal-actions"></footer>
+  </section>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><span>✓</span><p>已完成</p></div>
+  <script src="app.js"></script>
+</body>
+</html>
